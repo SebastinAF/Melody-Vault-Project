@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melody Vault — Sign In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  .login-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-card {
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+  }
+  .login-card h1 { margin-bottom: 4px; }
+  .login-card .tagline { margin-bottom: 24px; }
+  .login-field {
+    text-align: left;
+    margin-bottom: 14px;
+  }
+  .login-field label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--navy-soft);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .login-field input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(22,50,79,0.15);
+    background: rgba(255,255,255,0.8);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--navy);
+    outline: none;
+  }
+  .login-field input:focus {
+    border-color: var(--gold-2);
+    box-shadow: 0 0 0 4px rgba(212,175,55,0.18);
+  }
+  .login-submit { width: 100%; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+</div>
+
+<div class="login-wrap">
+  <div class="card glass login-card">
+    <div class="hero-icon" style="margin-bottom:8px;">
+      <svg viewBox="0 0 24 24" width="38" height="38">
+        <path fill="url(#goldGrad)" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+        <defs>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FCEABB"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#B8860B"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <h1 style="font-family:'Playfair Display', serif; color: var(--navy); font-size: 1.8rem;">Melody Vault</h1>
+    <p class="tagline" style="color: var(--navy-soft); font-weight: 300;">Private access only</p>
+
+    {% if error %}
+    <div class="error-banner" style="margin-bottom: 16px;">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+      <div class="login-field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+      </div>
+      <div class="login-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn-gold login-submit">
+        <span class="btn-label">Sign In</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

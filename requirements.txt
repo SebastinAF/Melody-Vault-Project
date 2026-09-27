@@ -1,0 +1,6 @@
+spotifyscraper
+gaanaclient
+google-api-python-client
+yt-dlp
+python-dotenv
+flask

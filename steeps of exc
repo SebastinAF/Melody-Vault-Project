@@ -1,0 +1,5 @@
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+winget install ffmpeg               //Install ffmpeg (needed for yt-dlp to extract mp3 audio)
+python app.py

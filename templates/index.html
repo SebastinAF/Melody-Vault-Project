@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melody Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎧</text></svg>">
+</head>
+<body>
+
+<div class="bg-orbs">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24" width="42" height="42">
+        <path fill="url(#goldGrad)" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+        <defs>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FCEABB"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#B8860B"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <h1>Melody Vault</h1>
+    <p class="tagline">Spotify &nbsp;&middot;&nbsp; Gaana &nbsp;&middot;&nbsp; YouTube — one elegant vault for your music</p>
+  </header>
+
+  <main class="card glass">
+
+    <div class="source-tabs" id="sourceTabs">
+      <button class="tab active" data-source="spotify">
+        <span class="tab-dot"></span> Spotify Playlist
+      </button>
+      <button class="tab" data-source="gaana">
+        <span class="tab-dot"></span> Gaana Playlist
+      </button>
+      <button class="tab" data-source="youtube">
+        <span class="tab-dot"></span> YouTube Video
+      </button>
+      <button class="tab" data-source="youtube_playlist">
+        <span class="tab-dot"></span> YouTube Playlist
+      </button>
+    </div>
+
+    <div class="url-row">
+      <input type="text" id="urlInput" placeholder="Paste a playlist or video link here…" autocomplete="off">
+      <button id="fetchBtn" class="btn-gold">
+        <span class="btn-label">Fetch</span>
+        <span class="spinner hidden"></span>
+      </button>
+    </div>
+
+    <div id="errorBanner" class="error-banner hidden"></div>
+
+    <!-- Playlist track list -->
+    <section id="trackSection" class="result-section hidden">
+      <div class="section-head">
+        <h3>Track List</h3>
+        <span class="pill" id="trackCount">0 tracks</span>
+      </div>
+      <ul id="trackList" class="track-list"></ul>
+    </section>
+
+    <!-- YouTube single-video options -->
+    <section id="youtubeSection" class="result-section hidden">
+      <div class="section-head">
+        <h3 id="videoTitle">Video</h3>
+      </div>
+
+      <div class="kind-toggle">
+        <button class="kind-btn active" data-kind="video">Video</button>
+        <button class="kind-btn" data-kind="audio">Audio</button>
+      </div>
+
+      <ul id="qualityList" class="quality-list"></ul>
+    </section>
+
+    <!-- YouTube full-playlist options -->
+    <section id="ytPlaylistSection" class="result-section hidden">
+      <div class="section-head">
+        <h3 id="ytPlaylistTitle">Playlist</h3>
+        <span class="pill" id="ytPlaylistCount">0 videos</span>
+      </div>
+
+      <div class="kind-toggle">
+        <button class="kind-btn active" data-ytp-kind="video">Video</button>
+        <button class="kind-btn" data-ytp-kind="audio">Audio</button>
+      </div>
+
+      <div class="resolution-row" id="resolutionRow">
+        <label for="resolutionSelect">Max resolution:</label>
+        <select id="resolutionSelect">
+          <option value="2160">2160p (4K)</option>
+          <option value="1440">1440p</option>
+          <option value="1080" selected>1080p</option>
+          <option value="720">720p</option>
+          <option value="480">480p</option>
+          <option value="360">360p</option>
+        </select>
+      </div>
+
+      <div class="size-estimate" id="sizeEstimate"></div>
+
+      <ul id="ytPlaylistVideoList" class="track-list"></ul>
+    </section>
+
+    <div class="action-row">
+      <button id="downloadBtn" class="btn-gold btn-large" disabled>
+        <span class="btn-label">Download</span>
+        <span class="spinner hidden"></span>
+      </button>
+      <button id="stopBtn" class="btn-ghost btn-stop hidden">Stop</button>
+      <button id="openFolderBtn" class="btn-ghost">Open Downloads Folder</button>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="progress-text" id="progressText">0%</span>
+    </div>
+
+    <section class="console">
+      <div class="console-head">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="console-title">Activity Log</span>
+      </div>
+      <div id="logBox" class="console-body"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Sebastin Nishanth A. All rights reserved. <a href="{{ url_for('logout') }}">Sign out</a></p>
+  </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
